@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/lrrocha/Documents/RepositoryRollABall/RollABall/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
