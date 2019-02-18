@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public float speed = 1;
+    public float jumpPower = 1;
     public Text countText;
     public Text winText;
     private int count;
+    private bool isGrounded;
 
     private void Start()
     {
@@ -26,6 +28,12 @@ public class Player : MonoBehaviour
         Vector3 move = new Vector3(moveHorizontal, 0, moveVertical);
 
         GetComponent<Rigidbody>().AddForce(move*speed);
+
+        if (Input.GetButton("Jump") && isGrounded)
+        {
+            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            isGrounded = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,4 +53,15 @@ public class Player : MonoBehaviour
         if (count >= 8)
             winText.text = "You Win!";
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Ground"))
+        {
+            return;
+        }
+
+        isGrounded = true;
+    }
 }
+
